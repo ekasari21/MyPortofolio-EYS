@@ -1,0 +1,36 @@
+{
+  "name": "Eka Yulia Sari",
+  "title": "IT Project Manager | System Analyst | Full-Stack Developer",
+  "email": "ekasari2107@gmail.com",
+  "phone": "+62 8953-5800-8271",
+  "location": "Yogyakarta, Indonesia",
+  "linkedin": "https://www.linkedin.com/in/eka-yulia-sari-b600a7175/",
+  "github": "https://github.com/ekasari21",
+  "summary": "IT professional with experience in project management, system analysis, and full-stack software development. Passionate about designing robust architectures, leading agile teams, and delivering high-impact digital solutions.",
+  "bio": "Experienced across the full Software Development Life Cycle (SDLC) from requirements engineering and business process modeling (BPMN/UML) to clean backend services in PHP/Golang and modern responsive web interfaces. Proven track record in orchestrating multi-disciplinary squads, managing stakeholder expectations, and delivering mission-critical enterprise systems on time and within scope.",
+  "resume_url": "/static/assets/Resume_Eka_Yulia_Sari.pdf",
+  "key_roles": [
+    "IT Project Manager",
+    "System Analyst",
+    "Golang Backend Engineer",
+    "Full-Stack Developer"
+  ],
+  "highlights": [
+    "Expertise in Clean Architecture & Domain-Driven Design in Golang",
+    "Comprehensive System Analysis (SRS, BRD, BPMN 2.0, ERD, API Contracts)",
+    "Agile Scrum & Sprint Governance with Jira & Confluence",
+    "Proven experience delivering scalable enterprise web applications"
+  ],
+  "stats": [
+    {
+      "label": "Projects Completed",
+      "value": "8",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "label": "Years of Experience",
+      "value": "2+",
+      "icon": "bi-clock-history"
+    }
+  ]
+}

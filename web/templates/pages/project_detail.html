@@ -1,0 +1,140 @@
+{{ define "content" }}
+<div class="container py-5">
+    <!-- Back Link -->
+    <a href="/projects" class="btn btn-sm btn-outline-secondary rounded-pill px-3 mb-4 d-inline-flex align-items-center gap-1">
+        <i class="bi bi-arrow-left"></i>
+        <span>Back to Projects</span>
+    </a>
+
+    {{ if .Project }}
+    <div class="row g-5">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-body mb-4">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 text-uppercase fw-bold" style="font-size: 0.7rem;">
+                        {{ .Project.Category }}
+                    </span>
+                    {{ if .Project.Duration }}
+                    <span class="badge bg-secondary-subtle text-body border rounded-pill px-3 py-1 small">
+                        <i class="bi bi-clock me-1"></i>{{ .Project.Duration }}
+                    </span>
+                    {{ end }}
+                </div>
+
+                <h1 class="display-6 fw-bold text-body mb-3">{{ .Project.Name }}</h1>
+
+                <p class="lead text-body-secondary fs-6 mb-4">
+                    {{ .Project.Description }}
+                </p>
+
+                <!-- Problem Statement -->
+                {{ if .Project.Problem }}
+                <div class="p-4 rounded-3 bg-danger-subtle border border-danger-subtle mb-4">
+                    <h5 class="fw-bold text-danger mb-2 d-flex align-items-center gap-2">
+                        <i class="bi bi-exclamation-triangle-fill"></i> Problem Statement & Context
+                    </h5>
+                    <p class="small text-danger-emphasis mb-0">
+                        {{ .Project.Problem }}
+                    </p>
+                </div>
+                {{ end }}
+
+                <!-- Solution & Methodology -->
+                {{ if .Project.Solution }}
+                <div class="p-4 rounded-3 bg-primary-subtle border border-primary-subtle mb-4">
+                    <h5 class="fw-bold text-primary mb-2 d-flex align-items-center gap-2">
+                        <i class="bi bi-gear-wide-connected"></i> Proposed Solution & Architecture
+                    </h5>
+                    <p class="small text-primary-emphasis mb-0">
+                        {{ .Project.Solution }}
+                    </p>
+                </div>
+                {{ end }}
+
+                <!-- Business Impact -->
+                {{ if .Project.Impact }}
+                <div class="p-4 rounded-3 bg-success-subtle border border-success-subtle mb-4">
+                    <h5 class="fw-bold text-success mb-2 d-flex align-items-center gap-2">
+                        <i class="bi bi-trophy-fill"></i> Business Impact & Results
+                    </h5>
+                    <p class="small text-success-emphasis mb-0 fw-semibold">
+                        {{ .Project.Impact }}
+                    </p>
+                </div>
+                {{ end }}
+
+                <!-- Deliverables List -->
+                {{ if .Project.Deliverables }}
+                <div class="mb-4">
+                    <h5 class="fw-bold text-body mb-3">Key Project Deliverables</h5>
+                    <ul class="list-group list-group-flush rounded-3 border">
+                        {{ range .Project.Deliverables }}
+                        <li class="list-group-item bg-transparent small d-flex align-items-center gap-2">
+                            <i class="bi bi-file-earmark-check text-primary"></i>
+                            <span>{{ . }}</span>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- Sidebar Meta -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-body sticky-top" style="top: 100px;">
+                <h5 class="fw-bold text-body mb-3">Project Overview</h5>
+
+                <div class="list-group list-group-flush border-top border-bottom py-2 small mb-4">
+                    {{ if .Project.Role }}
+                    <div class="list-group-item bg-transparent px-0 d-flex justify-content-between">
+                        <span class="text-body-secondary">My Role:</span>
+                        <span class="fw-semibold text-body">{{ .Project.Role }}</span>
+                    </div>
+                    {{ end }}
+                    {{ if .Project.Duration }}
+                    <div class="list-group-item bg-transparent px-0 d-flex justify-content-between">
+                        <span class="text-body-secondary">Timeline:</span>
+                        <span class="fw-semibold text-body">{{ .Project.Duration }}</span>
+                    </div>
+                    {{ end }}
+                    <div class="list-group-item bg-transparent px-0 d-flex justify-content-between">
+                        <span class="text-body-secondary">Architecture:</span>
+                        <span class="fw-semibold text-body">Clean Architecture</span>
+                    </div>
+                </div>
+
+                <!-- Technologies -->
+                <h6 class="fw-bold text-body small mb-2">Technologies Used:</h6>
+                <div class="d-flex flex-wrap gap-1 mb-4">
+                    {{ range .Project.Technologies }}
+                    <span class="badge bg-secondary-subtle text-body border rounded-2 font-monospace px-2 py-1.5 small">
+                        {{ . }}
+                    </span>
+                    {{ end }}
+                </div>
+
+                <!-- Action Links -->
+                <div class="d-grid gap-2">
+                    {{ if .Project.RepositoryURL }}
+                    <a href="{{ .Project.RepositoryURL }}" target="_blank" rel="noreferrer" class="btn btn-outline-dark rounded-pill fw-semibold">
+                        <i class="bi bi-github me-1"></i> View Repository
+                    </a>
+                    {{ end }}
+                    {{ if .Project.DemoURL }}
+                    <a href="{{ .Project.DemoURL }}" target="_blank" rel="noreferrer" class="btn btn-primary rounded-pill fw-semibold">
+                        <i class="bi bi-box-arrow-up-right me-1"></i> Live Demo
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ else }}
+    <div class="text-center py-5">
+        <h3>Project not found</h3>
+        <a href="/projects" class="btn btn-primary rounded-pill px-4 mt-3">Back to Projects</a>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

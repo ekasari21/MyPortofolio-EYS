@@ -1,0 +1,74 @@
+{{ define "project_card.html" }}
+<div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden project-card transition-all">
+    <!-- Category & Title -->
+    <div class="card-body p-4 d-flex flex-column justify-content-between">
+        <div>
+          <div class="d-flex flex-column align-items-start gap-2 mb-3">
+
+            <!-- Category -->
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 text-uppercase fw-bold"
+            style="font-size: 0.68rem; letter-spacing: 0.5px;">
+            {{ .Category }}
+        </span>
+        
+        <!-- Role --> 
+        {{ if .Role }}
+        <small class="text-body-secondary fw-semibold">
+            <i class="bi bi-person-badge me-1"></i>
+            {{ .Role }}
+        </small>
+        {{ end }}
+    
+    </div>
+
+    <h4 class="card-title fw-bold text-body fs-5 mb-2">
+        {{ .Name }}
+    </h4>
+
+    <p class="card-text text-body-secondary small line-clamp-3 mb-4">
+        {{ .Description }}
+    </p>
+</div>
+
+<div>
+    <!-- Impact highlight if exists -->
+    {{ if .Impact }}
+    <div class="p-2.5 rounded-3 bg-success-subtle text-success border border-success-subtle mb-3 small d-flex align-items-center gap-2">
+        <i class="bi bi-graph-up-arrow fs-6"></i>
+        <span class="fw-semibold">{{ .Impact }}</span>
+    </div>
+    {{ end }}
+
+    <!-- Technologies Pills -->
+    <div class="d-flex flex-wrap gap-1 mb-4">
+        {{ range .Technologies }}
+        <span class="badge bg-secondary-subtle text-body-secondary border rounded-2 px-2 py-1 font-monospace" style="font-size: 0.72rem;">
+            {{ . }}
+        </span>
+        {{ end }}
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+        <a href="/projects/{{ .ID }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-semibold">
+            <span>View Details</span>
+            <i class="bi bi-arrow-right ms-1"></i>
+        </a>
+
+        <div class="d-flex gap-2">
+            {{ if .RepositoryURL }}
+            <a href="{{ .RepositoryURL }}" target="_blank" rel="noreferrer" class="btn btn-sm btn-light rounded-circle text-body-secondary" title="View Source Code">
+                <i class="bi bi-github"></i>
+            </a>
+            {{ end }}
+            {{ if .DemoURL }}
+            <a href="{{ .DemoURL }}" target="_blank" rel="noreferrer" class="btn btn-sm btn-light rounded-circle text-primary" title="Live Preview">
+                <i class="bi bi-box-arrow-up-right"></i>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{{ end }}

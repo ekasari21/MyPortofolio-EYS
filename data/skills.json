@@ -1,0 +1,75 @@
+[
+  {
+    "category": "Backend Development",
+    "icon": "bi-server",
+    "description": "Robust, high-throughput server-side development adhering to Clean Architecture principles.",
+    "items": [
+      "Golang",
+      "Gin Framework",
+      "RESTful API",
+      "Clean Architecture",
+      "JWT Authentication",
+      "GORM",
+      "PHP",
+      "CodeIgniter"
+    ]
+  },
+  {
+    "category": "Frontend Development",
+    "icon": "bi-window-desktop",
+    "description": "Modern, accessible, and responsive user interfaces built with performance in mind.",
+    "items": [
+      "HTML5",
+      "CSS3",
+      "JavaScript (ES6+)",
+      "Bootstrap 5",
+      "Bootstrap Icons",
+      "AJAX / Fetch API",
+      "Go HTML Templates",
+      "Responsive UI/UX"
+    ]
+  },
+  {
+    "category": "Project Management & Analysis",
+    "icon": "bi-kanban-fill",
+    "description": "Agile leadership, stakeholder management, and rigorous system analysis.",
+    "items": [
+      "Agile / Scrum",
+      "Kanban",
+      "Requirements Engineering (BRD/SRS)",
+      "System Analysis",
+      "BPMN 2.0 Process Modeling",
+      "UML Diagrams",
+      "Risk Mitigation",
+      "Sprint Governance"
+    ]
+  },
+  {
+    "category": "Databases & Persistence",
+    "icon": "bi-database-fill",
+    "description": "Normalized data modeling, efficient queries, and reliable data storage solutions.",
+    "items": [
+      "PostgreSQL",
+      "MySQL",
+      "JSON File Storage",
+      "Database Normalization (3NF)",
+      "ERD Design",
+      "Redis Caching"
+    ]
+  },
+  {
+    "category": "Tools & Methodologies",
+    "icon": "bi-tools",
+    "description": "Industry-standard productivity, tracking, version control, and design tooling.",
+    "items": [
+      "Git & GitHub",
+      "Jira Software",
+      "Confluence",
+      "Draw.io / Lucidchart",
+      "Figma",
+      "Postman",
+      "Docker Basics",
+      "VS Code"
+    ]
+  }
+]

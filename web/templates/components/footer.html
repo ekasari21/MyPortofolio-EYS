@@ -1,0 +1,49 @@
+{{ define "footer.html" }}
+<footer class="bg-body border-top py-5 mt-auto">
+    <div class="container">
+        <div class="row g-4 justify-content-between align-items-center">
+            <!-- Brand & Tagline -->
+            <div class="col-lg-6 text-center text-lg-start">
+                <div class="d-flex align-items-center justify-content-center justify-content-lg-start gap-2 mb-2">
+                    <span class="brand-badge text-white rounded-2 d-inline-flex align-items-center justify-content-center fw-bold" style="width: 28px; height: 28px; font-size: 0.8rem;">
+                        EY
+                    </span>
+                    <h5 class="fw-bold mb-0 text-body">
+                        {{ if .Profile }}{{ .Profile.Name }}{{ else }}Eka Yulia Sari{{ end }}
+                    </h5>
+                </div>
+                <p class="text-body-secondary small mb-1 max-w-md">
+                    {{ if .Profile }}{{ .Profile.Title }}{{ else }}IT Project Manager | System Analyst | Full-Stack Developer{{ end }}
+                </p>
+                <p class="text-body-tertiary small mb-0">
+                    Built with <strong>Golang, Gin Framework, Bootstrap 5</strong> & Clean Architecture.
+                </p>
+            </div>
+
+            <!-- Social Links & Navigation -->
+            <div class="col-lg-6 text-center text-lg-end">
+                <div class="d-flex justify-content-center justify-content-lg-end gap-2 mb-3">
+                    {{ if and .Profile .Profile.LinkedIn }}
+                    <a href="{{ .Profile.LinkedIn }}" target="_blank" rel="noreferrer" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" title="LinkedIn">
+                        <i class="bi bi-linkedin fs-6"></i>
+                    </a>
+                    {{ end }}
+                    {{ if and .Profile .Profile.GitHub }}
+                    <a href="{{ .Profile.GitHub }}" target="_blank" rel="noreferrer" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" title="GitHub">
+                        <i class="bi bi-github fs-6"></i>
+                    </a>
+                    {{ end }}
+                    {{ if and .Profile .Profile.Email }}
+                    <a href="mailto:{{ .Profile.Email }}" class="btn btn-sm btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" title="Email">
+                        <i class="bi bi-envelope fs-6"></i>
+                    </a>
+                    {{ end }}
+                </div>
+                <div class="text-body-secondary small">
+                    &copy; 2026 {{ if .Profile }}{{ .Profile.Name }}{{ end }}. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{{ end }}

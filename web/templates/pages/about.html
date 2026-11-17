@@ -1,0 +1,151 @@
+{{ define "content" }}
+<div class="container py-5">
+    <!-- Breadcrumb & Header -->
+    <div class="mb-5">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 text-uppercase fw-bold mb-2" style="font-size: 0.7rem;">
+            Professional Profile
+        </span>
+        <h1 class="display-5 fw-bold text-body">About Me</h1>
+        <p class="lead text-body-secondary fs-6">
+            Detailed background, career objectives, and professional credentials.
+        </p>
+    </div>
+
+    <div class="row g-5">
+        <!-- Main Bio & Highlights -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-body mb-4">
+                <h3 class="fw-bold text-body mb-3">Professional Summary</h3>
+                <p class="text-body-secondary lh-lg mb-4">
+                    {{ if .Profile }}{{ .Profile.Bio }}{{ else }}{{ .Profile.Summary }}{{ end }}
+                </p>
+
+                {{ if and .Profile .Profile.Highlights }}
+                <h4 class="fw-bold text-body fs-5 mb-3">Key Strengths & Practice Areas</h4>
+                <div class="row g-2 mb-4">
+                    {{ range .Profile.Highlights }}
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-body-tertiary border d-flex align-items-start gap-2 h-100">
+                            <i class="bi bi-check2-circle text-primary fs-5 mt-n1"></i>
+                            <span class="text-body-secondary small fw-medium">{{ . }}</span>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+                {{ end }}
+
+                <!-- Career Objectives -->
+                <h4 class="fw-bold text-body fs-5 mb-3">Career Objectives</h4>
+                <p class="text-body-secondary small lh-base mb-0">
+                    Dedicated to leading transformative digital initiatives by combining disciplined system engineering with agile delivery frameworks. Committed to building clean, maintainable microservice architectures while ensuring seamless collaboration between business executives and development squads.
+                </p>
+            </div>
+
+            <!-- Academic Education -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-body mb-4">
+                <div class="d-flex align-items-center gap-2 mb-4">
+                    <i class="bi bi-mortarboard-fill text-primary fs-4"></i>
+                    <h3 class="fw-bold text-body mb-0">Academic Background</h3>
+                </div>
+
+                {{ range .Education }}
+                <div class="border-start border-3 border-primary ps-4 py-1 mb-4">
+                    <div class="d-flex justify-content-between align-items-baseline flex-wrap gap-2 mb-1">
+                        <h4 class="fs-5 fw-bold text-body mb-0">{{ .Degree }}</h4>
+                        <span class="badge bg-secondary-subtle text-body border rounded-pill">{{ .Year }}</span>
+                    </div>
+                    <div class="text-primary fw-semibold mb-1">{{ .Institution }}</div>
+                    {{ if .GPA }}
+                    <div class="text-success fw-bold small mb-2"><i class="bi bi-award-fill me-1"></i>{{ .GPA }}</div>
+                    {{ end }}
+                    {{ if .Description }}
+                    <p class="text-body-secondary small mb-2">{{ .Description }}</p>
+                    {{ end }}
+                    {{ if .Highlights }}
+                    <ul class="text-body-secondary small ps-3 mb-0">
+                        {{ range .Highlights }}
+                        <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+
+            <!-- Professional Certifications -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-body">
+                <div class="d-flex align-items-center gap-2 mb-4">
+                    <i class="bi bi-patch-check-fill text-success fs-4"></i>
+                    <h3 class="fw-bold text-body mb-0">Industry Certifications</h3>
+                </div>
+
+                <div class="row g-3">
+                    {{ range .Certifications }}
+                    <div class="col-md-6">
+                        <div class="p-3 rounded-3 bg-body-tertiary border h-100">
+                            <div class="d-flex justify-content-between align-items-start gap-2 mb-1">
+                                <h5 class="fw-bold text-body fs-6 mb-0">{{ .Name }}</h5>
+                                <span class="badge bg-success-subtle text-success small">{{ .Year }}</span>
+                            </div>
+                            <small class="text-body-secondary d-block mb-2">{{ .Issuer }}</small>
+                            {{ if .CredentialID }}
+                            <div class="text-body-tertiary font-monospace" style="font-size: 0.72rem;">
+                                ID: {{ .CredentialID }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar Info -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-body sticky-top" style="top: 100px;">
+                <div class="text-center mb-4">
+                    <div class="profile-avatar-lg rounded-4 text-white d-flex align-items-center justify-center fw-bold fs-2 mx-auto mb-3 shadow-sm">
+                        EY
+                    </div>
+                    <h4 class="fw-bold text-body mb-1">
+                        {{ if .Profile }}{{ .Profile.Name }}{{ end }}
+                    </h4>
+                    <p class="text-body-secondary small mb-3">
+                        {{ if .Profile }}{{ .Profile.Title }}{{ end }}
+                    </p>
+                </div>
+
+                <div class="list-group list-group-flush border-top border-bottom py-2 small mb-4">
+                    <div class="list-group-item bg-transparent px-0 d-flex justify-content-between">
+                        <span class="text-body-secondary">Location:</span>
+                        <span class="fw-semibold text-body">{{ if .Profile }}{{ .Profile.Location }}{{ end }}</span>
+                    </div>
+                    <div class="list-group-item bg-transparent px-0 d-flex justify-content-between">
+                        <span class="text-body-secondary">Email:</span>
+                        <span class="fw-semibold text-body text-break">{{ if .Profile }}{{ .Profile.Email }}{{ end }}</span>
+                    </div>
+                    <div class="list-group-item bg-transparent px-0 d-flex justify-content-between">
+                        <span class="text-body-secondary">Experience:</span>
+                        <span class="fw-semibold text-body">2+ Years</span>
+                    </div>
+                    <div class="list-group-item bg-transparent px-0 d-flex justify-content-between">
+                        <span class="text-body-secondary">Methodology:</span>
+                        <span class="fw-semibold text-body">Agile Scrum / Clean Arch</span>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <a href="/contact" class="btn btn-primary rounded-pill fw-semibold">
+                        <i class="bi bi-chat-dots me-1"></i> Contact Me
+                    </a>
+                    {{ if and .Profile .Profile.ResumeURL }}
+                    <a href="{{ .Profile.ResumeURL }}" class="btn btn-outline-secondary rounded-pill fw-semibold" download>
+                        <i class="bi bi-download me-1"></i> Download Resume
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

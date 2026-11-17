@@ -1,0 +1,127 @@
+{{ define "content" }}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="mb-5">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 text-uppercase fw-bold mb-2" style="font-size: 0.7rem;">
+            Career History
+        </span>
+        <h1 class="display-5 fw-bold text-body">Work Experience</h1>
+        <p class="lead text-body-secondary fs-6">
+            Chronological record of roles, leadership responsibilities, and technical achievements.
+        </p>
+    </div>
+
+    <div class="row g-5">
+        <!-- Experience Timeline -->
+        <div class="col-lg-8">
+            <div class="position-relative ps-4 ps-md-5 border-start border-2 border-primary-subtle">
+                {{ range .Experiences }}
+                <div class="position-relative mb-5">
+                    <!-- Timeline Marker Icon -->
+                    <div class="position-absolute timeline-marker rounded-circle bg-primary text-white d-flex align-items-center justify-center shadow-sm">
+                        <i class="bi bi-briefcase-fill" style="font-size: 0.75rem;"></i>
+                    </div>
+
+                    <!-- Experience Card -->
+                    <div class="card border-0 shadow-sm rounded-4 p-4 bg-body">
+                        <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-2">
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 fw-bold">
+                                {{ .Year }}
+                            </span>
+                            {{ if .Location }}
+                            <small class="text-body-secondary">
+                                <i class="bi bi-geo-alt me-1"></i>{{ .Location }}
+                            </small>
+                            {{ end }}
+                        </div>
+
+                        <h3 class="fs-4 fw-bold text-body mb-1">{{ .Position }}</h3>
+                        <h4 class="fs-6 fw-semibold text-primary mb-3">{{ .Company }}</h4>
+
+                        <p class="text-body-secondary small lh-base mb-3">
+                            {{ .Description }}
+                        </p>
+
+                        <!-- Key Responsibilities -->
+                        {{ if .Responsibilities }}
+                        <div class="mb-3">
+                            <h5 class="fw-bold text-body fs-6 mb-2">Key Responsibilities:</h5>
+                            <ul class="text-body-secondary small ps-3 mb-0">
+                                {{ range .Responsibilities }}
+                                <li class="mb-1">{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        {{ end }}
+
+                        <!-- Key Achievements -->
+                        {{ if .Achievements }}
+                        <div class="mb-3 p-3 rounded-3 bg-success-subtle text-success border border-success-subtle">
+                            <h6 class="fw-bold mb-1 fs-6 d-flex align-items-center gap-1">
+                                <i class="bi bi-trophy-fill"></i> Key Impact & Achievements:
+                            </h6>
+                            <ul class="small ps-3 mb-0">
+                                {{ range .Achievements }}
+                                <li>{{ . }}</li>
+                                {{ end }}
+                            </ul>
+                        </div>
+                        {{ end }}
+
+                        <!-- Technologies Used -->
+                        {{ if .Technologies }}
+                        <div class="pt-3 border-top d-flex flex-wrap gap-1">
+                            {{ range .Technologies }}
+                            <span class="badge bg-secondary-subtle text-body-secondary border rounded-2 font-monospace px-2 py-1" style="font-size: 0.72rem;">
+                                {{ . }}
+                            </span>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- Sidebar Credentials & Education Summary -->
+        <div class="col-lg-4">
+            <div class="sticky-top" style="top: 100px;">
+                <!-- Academic Card -->
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-body mb-4">
+                    <h5 class="fw-bold text-body mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-mortarboard-fill text-primary"></i>
+                        <span>Education</span>
+                    </h5>
+                    {{ range .Education }}
+                    <div class="mb-3">
+                        <div class="fw-bold text-body small">{{ .Degree }}</div>
+                        <div class="text-primary small fw-semibold">{{ .Institution }}</div>
+                        <div class="text-body-secondary small">{{ .Year }}</div>
+                        {{ if .GPA }}
+                        <div class="text-success small fw-bold">{{ .GPA }}</div>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+
+                <!-- Certifications Quick List -->
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-body mb-4">
+                    <h5 class="fw-bold text-body mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-patch-check-fill text-success"></i>
+                        <span>Certifications</span>
+                    </h5>
+                    <ul class="list-unstyled mb-0 small">
+                        {{ range .Certifications }}
+                        <li class="mb-2 pb-2 border-bottom">
+                            <div class="fw-semibold text-body">{{ .Name }}</div>
+                            <div class="text-body-secondary" style="font-size: 0.75rem;">{{ .Issuer }} ({{ .Year }})</div>
+                        </li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

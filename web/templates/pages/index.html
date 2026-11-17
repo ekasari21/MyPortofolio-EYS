@@ -1,0 +1,213 @@
+{{ define "content" }}
+<!-- Hero Section -->
+<section class="hero-section py-5 py-lg-6 position-relative overflow-hidden bg-body">
+    <div class="container py-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <!-- Status Badge -->
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-primary-subtle text-primary border border-primary-subtle small fw-semibold mb-4">
+                    <span class="status-dot bg-success rounded-circle"></span>
+                    <span>Available for Analyst System or IT Project Manager</span>
+                </div>
+
+                <!-- Main Greeting & Headline -->
+                <h1 class="display-4 fw-extrabold text-body tracking-tight mb-3">
+                    Hi, I'm <span class="gradient-text">{{ if .Profile }}{{ .Profile.Name }}{{ else }}Eka Yulia Sari{{ end }}</span>
+                </h1>
+                
+                <h2 class="fs-4 fw-semibold text-primary mb-4">
+                    {{ if .Profile }}{{ .Profile.Title }}{{ else }}IT Project Manager | System Analyst | Full-Stack Developer{{ end }}
+                </h2>
+
+                <p class="lead text-body-secondary mb-4 fs-6 lh-base">
+                    {{ if .Profile }}{{ .Profile.Summary }}{{ end }}
+                </p>
+
+                <!-- Location & Contact meta -->
+                <div class="d-flex flex-wrap align-items-center gap-3 text-body-secondary small mb-5">
+                    {{ if and .Profile .Profile.Location }}
+                    <span class="d-flex align-items-center gap-1">
+                        <i class="bi bi-geo-alt-fill text-danger"></i> {{ .Profile.Location }}
+                    </span>
+                    {{ end }}
+                    {{ if and .Profile .Profile.Email }}
+                    <span class="d-flex align-items-center gap-1">
+                        <i class="bi bi-envelope-fill text-primary"></i> {{ .Profile.Email }}
+                    </span>
+                    {{ end }}
+                </div>
+
+                <!-- Primary Call To Action Buttons -->
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="/projects" class="btn btn-primary rounded-pill px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm">
+                        <span>Explore Projects</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                    <a href="/experience" class="btn btn-outline-secondary rounded-pill px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-briefcase"></i>
+                        <span>Career Experience</span>
+                    </a>
+                    <a href="/contact" class="btn btn-light rounded-pill px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-chat-dots"></i>
+                        <span>Get In Touch</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Hero Card / Stats -->
+            <div class="col-lg-5">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden bg-body p-4 p-md-5 position-relative">
+                    <div class="d-flex align-items-center gap-4 mb-4">
+                        <div class="profile-avatar-lg rounded-4 text-white d-flex align-items-center justify-center fw-bold fs-2 shadow-sm">
+                            EY
+                        </div>
+                        <div>
+                            <h4 class="fw-bold text-body mb-1">
+                                {{ if .Profile }}{{ .Profile.Name }}{{ end }}
+                            </h4>
+                            <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1">
+                                Clean Architecture & Agile
+                            </span>
+                        </div>
+                    </div>
+
+                    <p class="text-body-secondary small mb-4">
+                        Bridging business requirements, clean backend system design (Golang / Gin), and high-performing agile engineering teams.
+                    </p>
+
+                    <!-- Key Roles Pills -->
+                    {{ if and .Profile .Profile.KeyRoles }}
+                    <div class="mb-4">
+                        <small class="text-uppercase text-body-tertiary fw-bold d-block mb-2" style="font-size: 0.7rem;">
+                            Core Roles & Specializations:
+                        </small>
+                        <div class="d-flex flex-wrap gap-1">
+                            {{ range .Profile.KeyRoles }}
+                            <span class="badge bg-secondary-subtle text-body border rounded-pill px-2.5 py-1 small">
+                                {{ . }}
+                            </span>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+
+                    <!-- Social Direct Links -->
+                    <div class="pt-3 border-top d-flex gap-2">
+                        {{ if and .Profile .Profile.LinkedIn }}
+                        <a href="{{ .Profile.LinkedIn }}" target="_blank" rel="noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3 d-flex align-items-center gap-1">
+                            <i class="bi bi-linkedin"></i> LinkedIn
+                        </a>
+                        {{ end }}
+                        {{ if and .Profile .Profile.GitHub }}
+                        <a href="{{ .Profile.GitHub }}" target="_blank" rel="noreferrer" class="btn btn-outline-dark btn-sm rounded-pill px-3 d-flex align-items-center gap-1">
+                            <i class="bi bi-github"></i> GitHub
+                        </a>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quantitative Stats Bar -->
+        {{ if and .Profile .Profile.Stats }}
+        <div class="row g-3 g-md-4 mt-5">
+            {{ range .Profile.Stats }}
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 bg-body">
+                    <div class="fs-2 fw-bold text-primary mb-1">{{ .Value }}</div>
+                    <div class="text-body-secondary small fw-medium">{{ .Label }}</div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="py-5 py-lg-6 bg-body-tertiary border-top">
+    <div class="container py-2">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-5">
+            <div>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 text-uppercase fw-bold mb-2" style="font-size: 0.7rem;">
+                    Portfolio Case Studies
+                </span>
+                <h2 class="display-6 fw-bold text-body mb-0">Featured Projects</h2>
+                <p class="text-body-secondary mt-1 mb-0">
+                    Selected works demonstrating Clean Architecture, system analysis, and project execution.
+                </p>
+            </div>
+            <a href="/projects" class="btn btn-outline-primary rounded-pill px-4 fw-semibold text-nowrap align-self-start align-self-md-auto">
+                <span>View All Projects</span>
+                <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+
+        <div class="row g-4">
+            {{ range .Projects }}
+            <div class="col-md-6 col-lg-4">
+                {{ template "project_card.html" . }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- Top Skills Overview Section -->
+<section class="py-5 py-lg-6 bg-body border-top">
+    <div class="container py-2">
+        <div class="text-center max-w-2xl mx-auto mb-5">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 text-uppercase fw-bold mb-2" style="font-size: 0.7rem;">
+                Core Competencies
+            </span>
+            <h2 class="display-6 fw-bold text-body mb-2">Technical Skills & Expertise</h2>
+            <p class="text-body-secondary">
+                Categorized capabilities spanning backend engineering, system analysis, and agile project delivery.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            {{ range .Skills }}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4 p-4 bg-body">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="skill-icon-wrapper rounded-3 text-primary d-flex align-items-center justify-center fs-4">
+                            <i class="bi {{ if .Icon }}{{ .Icon }}{{ else }}bi-check-circle-fill{{ end }}"></i>
+                        </div>
+                        <h5 class="fw-bold mb-0 text-body">{{ .Category }}</h5>
+                    </div>
+                    {{ if .Description }}
+                    <p class="text-body-secondary small mb-3">{{ .Description }}</p>
+                    {{ end }}
+                    <div class="d-flex flex-wrap gap-1.5 mt-auto">
+                        {{ range .Items }}
+                        <span class="badge bg-secondary-subtle text-body border rounded-2 px-2.5 py-1.5 small font-monospace">
+                            {{ . }}
+                        </span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Banner -->
+<section class="py-5 bg-primary text-white position-relative overflow-hidden">
+    <div class="container py-3 text-center">
+        <h2 class="display-6 fw-bold mb-3">Interested in Working Together?</h2>
+        <p class="lead opacity-75 max-w-xl mx-auto mb-4 fs-6">
+            Whether you need a System Analyst for software requirement blueprints or an IT Project Manager for agile software delivery, let's connect.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="/contact" class="btn btn-light rounded-pill px-4 py-2.5 fw-bold text-primary shadow-sm">
+                <i class="bi bi-chat-text me-1"></i> Send a Message
+            </a>
+            <a href="mailto:{{ if .Profile }}{{ .Profile.Email }}{{ end }}" class="btn btn-outline-light rounded-pill px-4 py-2.5 fw-semibold">
+                <i class="bi bi-envelope me-1"></i> Direct Email
+            </a>
+        </div>
+    </div>
+</section>
+{{ end }}

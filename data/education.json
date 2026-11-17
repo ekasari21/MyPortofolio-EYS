@@ -1,0 +1,33 @@
+{
+  "education": [
+    {
+      "institution": "Universitas Amikom Yogyakarta",
+      "degree": "Master of Computer Science (M.Kom.)",
+      "field_of_study": "Informatics",
+      "year": "2018 — 2020",
+      "gpa": "GPA 3.86 / 4.00 (Cum Laude)",
+      "description": "Graduated with honors focusing on Intelligent Software Engineering, Systems Analysis, and Machine Learning.",
+      "highlights": [
+        "Master's Thesis in Intelligent Software Engineering and Machine Learning",
+        "Advanced Knowledge in System Analysis, Software Architecture, and Database Design.",
+        "Applied Machine Learning for Predictive Modeling and Intelligent Systems"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Golang Backend For Industries",
+      "issuer": "BLKPP DIY",
+      "year": "2026",
+      "credential_id": "",
+      "url": "#"
+    },
+    {
+      "name": "Mastering Mobile Programming Android",
+      "issuer": "SKill Academy By Ruangguru",
+      "year": "2021",
+      "credential_id": "",
+      "url": "https://skillacademy.com/sertifikat/1LVG0ZDZSKUMQX"
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{{ define "content" }}
+<div class="container py-5">
+    <!-- Header -->
+    <div class="mb-5">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1 text-uppercase fw-bold mb-2" style="font-size: 0.7rem;">
+            Communication
+        </span>
+        <h1 class="display-5 fw-bold text-body">Get in Touch</h1>
+        <p class="lead text-body-secondary fs-6">
+            Feel free to reach out for project collaboration, professional recruitment, or technical consulting.
+        </p>
+    </div>
+
+    <!-- Success Message if Form was Submitted -->
+    {{ if .Success }}
+    <div class="alert alert-success alert-dismissible fade show rounded-4 p-4 mb-5 border-0 shadow-sm" role="alert">
+        <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-check-circle-fill fs-2 text-success"></i>
+            <div>
+                <h5 class="alert-heading fw-bold mb-1">Message Sent Successfully!</h5>
+                <p class="mb-0 small">
+                    Thank you, <strong>{{ .SenderName }}</strong>. Your inquiry regarding "<em>{{ .Subject }}</em>" has been received. I will reply to <strong>{{ .SenderEmail }}</strong> within 24 hours.
+                </p>
+            </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {{ end }}
+
+    <div class="row g-5">
+        <!-- Contact Form -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-body">
+                <h3 class="fw-bold text-body mb-2">Send a Message</h3>
+                <p class="text-body-secondary small mb-4">
+                    Fill out the form below and I'll get back to you promptly.
+                </p>
+
+                <form action="/contact" method="POST">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="nameInput" class="form-label small fw-semibold text-body">Your Name *</label>
+                            <input type="text" class="form-control rounded-3" id="nameInput" name="name" required placeholder="John Doe">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="emailInput" class="form-label small fw-semibold text-body">Email Address *</label>
+                            <input type="email" class="form-control rounded-3" id="emailInput" name="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="col-12">
+                            <label for="subjectInput" class="form-label small fw-semibold text-body">Subject / Inquiry Topic *</label>
+                            <select class="form-select rounded-3" id="subjectInput" name="subject" required>
+                                <option value="IT Project Management & Agile Delivery">IT Project Management & Agile Delivery</option>
+                                <option value="System Analysis & Requirements Engineering">System Analysis & Requirements Engineering (BRD/SRS)</option>
+                                <option value="Golang Backend Engineering">Golang Backend Engineering (Clean Architecture)</option>
+                                <option value="Full-Time Career Opportunity">Full-Time Career Opportunity</option>
+                                <option value="Other Consulting">Other Consulting</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="messageInput" class="form-label small fw-semibold text-body">Message *</label>
+                            <textarea class="form-control rounded-3" id="messageInput" name="message" rows="5" required placeholder="Provide a brief description of your project scope, requirements, or inquiry..."></textarea>
+                        </div>
+                        <div class="col-12 pt-2">
+                            <button type="submit" class="btn btn-primary rounded-pill px-4 py-2.5 fw-semibold d-inline-flex align-items-center gap-2 shadow-sm">
+                                <i class="bi bi-send-fill"></i>
+                                <span>Submit Message</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Direct Contact Channels & Availability -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-body mb-4">
+                <h4 class="fw-bold text-body mb-4">Direct Contact Information</h4>
+
+                <div class="d-flex flex-column gap-3">
+                    {{ if and .Profile .Profile.Email }}
+                    <a href="mailto:{{ .Profile.Email }}" class="p-3 rounded-3 bg-body-tertiary border text-decoration-none d-flex align-items-center gap-3 transition-all">
+                        <div class="skill-icon-wrapper rounded-3 bg-primary text-white d-flex align-items-center justify-center fs-5" style="width: 44px; height: 44px;">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div>
+                            <small class="text-body-secondary d-block">Email Address</small>
+                            <span class="fw-bold text-body small">{{ .Profile.Email }}</span>
+                        </div>
+                    </a>
+                    {{ end }}
+
+                    {{ if and .Profile .Profile.LinkedIn }}
+                    <a href="{{ .Profile.LinkedIn }}" target="_blank" rel="noreferrer" class="p-3 rounded-3 bg-body-tertiary border text-decoration-none d-flex align-items-center gap-3 transition-all">
+                        <div class="skill-icon-wrapper rounded-3 bg-primary text-white d-flex align-items-center justify-center fs-5" style="width: 44px; height: 44px;">
+                            <i class="bi bi-linkedin"></i>
+                        </div>
+                        <div>
+                            <small class="text-body-secondary d-block">LinkedIn Profile</small>
+                            <span class="fw-bold text-body small">Connect on LinkedIn</span>
+                        </div>
+                    </a>
+                    {{ end }}
+
+                    {{ if and .Profile .Profile.GitHub }}
+                    <a href="{{ .Profile.GitHub }}" target="_blank" rel="noreferrer" class="p-3 rounded-3 bg-body-tertiary border text-decoration-none d-flex align-items-center gap-3 transition-all">
+                        <div class="skill-icon-wrapper rounded-3 bg-dark text-white d-flex align-items-center justify-center fs-5" style="width: 44px; height: 44px;">
+                            <i class="bi bi-github"></i>
+                        </div>
+                        <div>
+                            <small class="text-body-secondary d-block">GitHub Profile</small>
+                            <span class="fw-bold text-body small">github.com/ekayuliasari</span>
+                        </div>
+                    </a>
+                    {{ end }}
+
+                    {{ if and .Profile .Profile.Location }}
+                    <div class="p-3 rounded-3 bg-body-tertiary border d-flex align-items-center gap-3">
+                        <div class="skill-icon-wrapper rounded-3 bg-danger text-white d-flex align-items-center justify-center fs-5" style="width: 44px; height: 44px;">
+                            <i class="bi bi-geo-alt-fill"></i>
+                        </div>
+                        <div>
+                            <small class="text-body-secondary d-block">Location</small>
+                            <span class="fw-bold text-body small">{{ .Profile.Location }}</span>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+
+            <!-- Working Hours / Response Promise -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-primary text-white">
+                <div class="d-flex align-items-center gap-3 mb-2">
+                    <i class="bi bi-clock-history fs-3"></i>
+                    <h5 class="fw-bold mb-0">Response Guarantee</h5>
+                </div>
+                <p class="small opacity-75 mb-0">
+                    All inquiries are typically answered within 24 hours during standard business days (Monday to Friday, 09:00 — 17:00 WIB).
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}

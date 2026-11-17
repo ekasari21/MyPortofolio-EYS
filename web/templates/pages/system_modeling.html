@@ -1,0 +1,257 @@
+{{ define "content" }}
+<div class="container py-5">
+    <!-- Header Section -->
+    <div class="mb-5">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-primary-subtle text-primary border border-primary-subtle small fw-bold mb-3">
+            <i class="bi bi-diagram-3-fill"></i>
+            <span>System Analysis & Enterprise Architecture</span>
+        </div>
+        <h1 class="display-5 fw-extrabold text-body tracking-tight">Pengalaman Pemodelan Sistem</h1>
+        <p class="lead text-body-secondary fs-6 max-w-2xl">
+            Kumpulan artefak pemodelan sistem yang pernah dibuat, mencakup diagram alur proses bisnis (BPMN 2.0), spesifikasi perilaku sistem (UML Sequence & Use Case), skema data relasional (ERD 3NF), serta arsitektur perangkat lunak berstandar Clean Architecture.
+        </p>
+    </div>
+
+    <!-- Quantitative Modeling Stats -->
+    {{ if and .Experience .Experience.Stats }}
+    <div class="row g-3 g-md-4 mb-5">
+        {{ range .Experience.Stats }}
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 bg-body">
+                <div class="fs-2 fw-bold text-primary mb-1">{{ .Value }}</div>
+                <div class="text-body-secondary small fw-medium">{{ .Label }}</div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+    {{ end }}
+
+    <!-- Methodologies & Tools Bar -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-body mb-5">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6 border-lg-end">
+                <h6 class="fw-bold text-body small text-uppercase mb-2 d-flex align-items-center gap-2">
+                    <i class="bi bi-check2-all text-primary fs-5"></i>
+                    <span>Metodologi & Standar Pemodelan:</span>
+                </h6>
+                <div class="d-flex flex-wrap gap-1.5">
+                    {{ range .Experience.Methodologies }}
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-1.5 small fw-semibold">
+                        {{ . }}
+                    </span>
+                    {{ end }}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h6 class="fw-bold text-body small text-uppercase mb-2 d-flex align-items-center gap-2">
+                    <i class="bi bi-tools text-success fs-5"></i>
+                    <span>Perangkat Lunak Pemodelan (Tools):</span>
+                </h6>
+                <div class="d-flex flex-wrap gap-1.5">
+                    {{ range .Experience.Tools }}
+                    <span class="badge bg-secondary-subtle text-body border rounded-2 px-2.5 py-1.5 small font-monospace">
+                        {{ . }}
+                    </span>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Category Tabs & NDA Banner -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div class="d-flex flex-wrap gap-2" id="diagramFilterGroup">
+            <button class="btn btn-sm btn-primary rounded-pill px-3 py-1.5 diagram-filter-btn active" data-filter="all">
+                Semua Diagram ({{ len .Experience.Diagrams }})
+            </button>
+            {{ range .Categories }}
+            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1.5 diagram-filter-btn" data-filter="{{ . }}">
+                {{ . }}
+            </button>
+            {{ end }}
+        </div>
+
+        <!-- NDA Notice Badge -->
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill bg-warning-subtle text-warning-emphasis border border-warning-subtle small">
+            <i class="bi bi-shield-lock-fill text-warning"></i>
+            <span>NDA Protected: Nama entitas rahasia telah disanitasi / disamarkan.</span>
+        </div>
+    </div>
+
+    <!-- Diagrams List -->
+    <div class="row g-4" id="diagramsList">
+        {{ range .Experience.Diagrams }}
+        <div class="col-12 diagram-card-item" data-category="{{ .Category }}">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-body">
+                <!-- Card Header -->
+                <div class="card-header bg-body border-bottom p-4 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                    <div>
+                        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                            <span class="badge bg-primary text-white rounded-pill px-3 py-1 text-uppercase fw-bold" style="font-size: 0.68rem; letter-spacing: 0.5px;">
+                                {{ .Category }}
+                            </span>
+                            <span class="badge bg-secondary-subtle text-body border rounded-pill px-2.5 py-1 small">
+                                <i class="bi bi-folder2-open me-1"></i>{{ .Project }}
+                            </span>
+                            {{ if .NDASanitized }}
+                            <span class="badge bg-light text-body-secondary border rounded-pill px-2 py-0.5" style="font-size: 0.7rem;">
+                                <i class="bi bi-shield-check text-success me-1"></i>Sanitized
+                            </span>
+                            {{ end }}
+                        </div>
+
+                        <h3 class="fs-4 fw-bold text-body mb-1">
+                            {{ .Title }}
+                        </h3>
+                        <p class="text-body-secondary small mb-0">
+                            {{ .Description }}
+                        </p>
+                    </div>
+
+                    <!-- Right Header: Tools used & Action Switcher -->
+                    <div class="d-flex flex-wrap align-items-center gap-2 align-self-start align-self-md-auto">
+                        <div class="btn-group btn-group-sm rounded-pill p-1 bg-body-tertiary border" role="group">
+                            <button type="button" class="btn btn-sm btn-primary rounded-pill px-3 toggle-view-btn" data-target="visual-{{ .ID }}">
+                                <i class="bi bi-eye-fill me-1"></i> Visual
+                            </button>
+                            <button type="button" class="btn btn-sm btn-light rounded-pill px-3 toggle-view-btn text-body-secondary" data-target="code-{{ .ID }}">
+                                <i class="bi bi-code-slash me-1"></i> Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Elements Pill Row -->
+                {{ if .KeyElements }}
+                <div class="px-4 py-2 bg-body-tertiary border-bottom d-flex flex-wrap align-items-center gap-2 small">
+                    <span class="text-body-secondary fw-semibold" style="font-size: 0.75rem;">Key Elements:</span>
+                    {{ range .KeyElements }}
+                    <span class="badge bg-body text-body-secondary border rounded-pill px-2 py-1" style="font-size: 0.72rem;">
+                        <i class="bi bi-check2 text-primary me-1"></i>{{ . }}
+                    </span>
+                    {{ end }}
+                </div>
+                {{ end }}
+
+                <!-- Diagram Content Area -->
+                <div class="card-body p-4 p-md-5">
+                    <!-- Visual Diagram Container -->
+                    <div id="visual-{{ .ID }}" class="diagram-visual-box text-center overflow-auto p-3 p-md-4 rounded-3 border bg-body-tertiary">
+                        <pre class="mermaid text-start mb-0">
+{{ .MermaidCode }}
+                        </pre>
+                    </div>
+
+                    <!-- Raw Mermaid Code Container (hidden initially) -->
+                    <div id="code-{{ .ID }}" class="diagram-code-box d-none position-relative">
+                        <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-3 copy-dsl-btn rounded-pill px-3" data-code="{{ .MermaidCode }}" title="Salin kode Mermaid">
+                            <i class="bi bi-clipboard me-1"></i> Copy DSL
+                        </button>
+                        <pre class="bg-dark text-light p-4 rounded-3 font-monospace small overflow-auto text-start" style="max-height: 420px;"><code>{{ .MermaidCode }}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Card Footer -->
+                <div class="card-footer bg-body border-top px-4 py-3 d-flex flex-wrap justify-content-between align-items-center small text-body-secondary">
+                    <div class="d-flex align-items-center gap-2">
+                        <span>Tools yang digunakan:</span>
+                        {{ range .Tools }}
+                        <span class="badge bg-secondary-subtle text-body border rounded-2 font-monospace">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    <div>
+                        <span class="text-body-tertiary">Format: Mermaid 10.x / SVG Render</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</div>
+
+<!-- Mermaid.js CDN for interactive browser-side diagram rendering -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Determine theme for Mermaid (dark / neutral)
+        const currentTheme = document.documentElement.getAttribute('data-bs-theme') || 'light';
+        
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: currentTheme === 'dark' ? 'dark' : 'neutral',
+            securityLevel: 'loose',
+            fontFamily: 'Plus Jakarta Sans, system-ui, sans-serif'
+        });
+
+        // 1. Toggle between Visual Diagram and Mermaid Code
+        document.querySelectorAll('.toggle-view-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const group = this.closest('.card');
+                const targetId = this.getAttribute('data-target');
+                const isVisual = targetId.startsWith('visual-');
+                
+                // Toggle active buttons in the group
+                const btnGroup = this.closest('.btn-group');
+                btnGroup.querySelectorAll('.toggle-view-btn').forEach(b => {
+                    b.classList.remove('btn-primary');
+                    b.classList.add('btn-light', 'text-body-secondary');
+                });
+                this.classList.remove('btn-light', 'text-body-secondary');
+                this.classList.add('btn-primary');
+
+                const cardId = targetId.replace(/^(visual|code)-/, '');
+                const visualEl = document.getElementById('visual-' + cardId);
+                const codeEl = document.getElementById('code-' + cardId);
+
+                if (isVisual) {
+                    if (visualEl) visualEl.classList.remove('d-none');
+                    if (codeEl) codeEl.classList.add('d-none');
+                } else {
+                    if (visualEl) visualEl.classList.add('d-none');
+                    if (codeEl) codeEl.classList.remove('d-none');
+                }
+            });
+        });
+
+        // 2. Filter Diagrams by Category
+        const filterBtns = document.querySelectorAll('.diagram-filter-btn');
+        const diagramCards = document.querySelectorAll('.diagram-card-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                filterBtns.forEach(b => {
+                    b.classList.remove('btn-primary', 'active');
+                    b.classList.add('btn-outline-secondary');
+                });
+                this.classList.remove('btn-outline-secondary');
+                this.classList.add('btn-primary', 'active');
+
+                const selectedCategory = this.getAttribute('data-filter');
+
+                diagramCards.forEach(card => {
+                    const cardCat = card.getAttribute('data-category');
+                    if (selectedCategory === 'all' || cardCat === selectedCategory) {
+                        card.classList.remove('d-none');
+                    } else {
+                        card.classList.add('d-none');
+                    }
+                });
+            });
+        });
+
+        // 3. Copy Mermaid DSL Code
+        document.querySelectorAll('.copy-dsl-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const code = this.getAttribute('data-code');
+                navigator.clipboard.writeText(code).then(() => {
+                    const originalHtml = this.innerHTML;
+                    this.innerHTML = '<i class="bi bi-check2 text-success me-1"></i> Copied!';
+                    setTimeout(() => {
+                        this.innerHTML = originalHtml;
+                    }, 2000);
+                });
+            });
+        });
+    });
+</script>
+{{ end }}

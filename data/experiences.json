@@ -1,0 +1,72 @@
+[
+  {
+    "company": "PT Global Data Inspirasi",
+    "position": "System Analyst & IT Project Coordinator",
+    "year": "2024 — Present",
+    "location": "Yogyakarta, Indonesia",
+    "type": "Full-Time",
+    "description": "Conducted end-to-end business process analysis, stakeholder requirements elicitation, comprehensive SRS documentation, and system modeling for government and enterprise clients.",
+    "responsibilities": [
+      "Requirements Engineering: Translated business requirements and stakeholder needs into structured functional and non-functional requirements, ensuring alignment between business objectives and system development.",
+      "System Analysis & Design: Analyzed business processes, identified operational gaps, and developed system specifications, including use case diagrams, activity diagrams, sequence diagrams, and database models.",
+      "Project Planning & Coordination: Managed project scope, timelines, priorities, and task assignments using Jira to support effective project execution and delivery.",
+      "Cross-functional Team Coordination: Coordinated developers and Quality Assurance (QA) teams, facilitated communication, monitored task progress, and maintained team accountability.",
+      "Agile Project Management: Managed project backlogs, task dependencies, changing requirements, and development priorities using Agile/Kanban practices.",
+      "Risk & Issue Management: Identified project risks, implementation blockers, and requirement conflicts while ensuring activities remained aligned with established milestones.",
+      "Stakeholder & Team Alignment: Bridged communication between stakeholders and technical teams to ensure a shared understanding of requirements, deliverables, and implementation priorities.",
+      "Project Monitoring & Reporting: Monitored development progress, tracked milestones, and prepared project updates to support transparent project execution."
+    ],
+    "achievements": [
+      "Translated business requirements into structured functional and non-functional specifications, reducing ambiguity between stakeholders and development teams.",
+      "Developed 4 UML diagram types (Use Case, Activity, Sequence, and Class Diagrams) to establish clear system design and implementation guidelines.",
+      "Delivered 3 major system analysis artifacts, covering Business Process Analysis, Gap Analysis, and Entity Relationship Diagram (ERD).",
+      "Coordinated 4 cross-functional team members across system analysis, development, and quality assurance activities to maintain project alignment.",
+      "Structured 4 Agile/Kanban project backlogs, improving task visibility, dependency management, and development prioritization.",
+      "Managed project milestones and task dependencies across an 18+ working-day development schedule to support timely project execution."
+    ],
+    "technologies": ["SRS", "UML", "Jira", "Draw.io", "ERD", "Activity Diagrams","Sequence Diagrams", "Stakeholder Management"]
+  },
+  {
+    "company": "BLKPP DIY",
+    "position": "Golang Backend Engineer",
+    "year": "2023 — 2024",
+    "location": "Yogyakarta, Indonesia",
+    "type": "Contract",
+    "description": "Architected and developed high-performance backend microservices using Golang and the Gin Framework following Clean Architecture principles.",
+    "responsibilities": [
+      "Designed and implemented RESTful APIs with strict adherence to Clean Architecture layers (Domain, Usecase, Delivery, Persistence).",
+      "Optimized relational database queries in PostgreSQL, achieving sub-100ms response times for high-volume endpoints.",
+      "Integrated JWT authentication, middleware authorization, and robust input validation schemas.",
+      "Authored automated unit tests and integration tests with mock repositories."
+    ],
+    "achievements": [
+      "Built a modular service template that accelerated subsequent feature development by 45%.",
+      "Maintained zero critical security vulnerabilities during production code audit."
+    ],
+    "technologies": ["Golang", "Gin Framework", "PostgreSQL", "Docker", "Clean Architecture", "JWT", "Git"]
+  },
+  {
+    "company": "PT Survey Meter Indonesia",
+    "position": "Full-Stack Web Developer",
+    "year": "2020 — 2022",
+    "location": "Yogyakarta, Indonesia",
+    "type": "Full-Time",
+    "description": "Developed and maintained full-stack web applications for institutional clients, integrating business processes, data visualization, and database-driven solutions using PHP and CodeIgniter.",
+    "responsibilities": [
+      "Developed and maintained full-stack web applications for project management and employee attendance systems using PHP, CodeIgniter, and MySQL.",
+      "Built responsive user interfaces using HTML5, CSS3, JavaScript, and Bootstrap.",
+      "Developed interactive data visualization dashboards using Chart.js and Leaflet.js for the Nganjuk Regency Data Information System.",
+      "Integrated frontend components, backend business logic, and MySQL databases to deliver data-driven web applications.",
+      "Translated business requirements and stakeholder needs into technical specifications and functional application features.",
+      "Conducted functional testing, debugging, and application maintenance to improve system reliability and performance."
+    
+    ],
+    "achievements": [
+      "Developed project management and employee attendance systems to support operational workflows and workforce monitoring.",
+      "Delivered an interactive data visualization dashboard for the Nganjuk Regency Data Information System using Chart.js and Leaflet.js.",
+      "Integrated statistical charts and interactive geographical maps to improve the presentation of research survey results.",
+      "Implemented responsive full-stack web applications integrating frontend interfaces, backend business logic, and MySQL databases."
+    ],
+    "technologies": ["JavaScript", "Bootstrap 5", "PHP", "MySQL", "Leaflet.js", "Chart.js", "HTML5/CSS3"]
+  }
+]

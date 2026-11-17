@@ -1,0 +1,123 @@
+{
+  "overview": "Experienced in translating ambiguous business requirements into rigorous, testable system models and architectural blueprints. Specializing in Business Process Modeling (BPMN 2.0 AS-IS/TO-BE), UML behavioral & structural specifications (Sequence, Use Case, Activity), 3NF Relational Database Schema Design (ERD), and Clean Architecture component boundaries.",
+"methodologies": [
+  "Requirements Engineering (Functional & Non-Functional Requirements)",
+  "Software Requirements Specification (SRS)",
+  "Business Process Analysis (As-Is & To-Be)",
+  "BPMN 2.0 (Business Process Model and Notation)",
+  "UML 2.5 (Use Case, Sequence, Activity, Class)",
+  "Entity Relationship Diagram (ERD)",
+  "Relational Database Normalization (1NF to 3NF)",
+  "Clean Architecture & Layered Component Boundaries",
+  "RESTful API Design & Specification",
+  "Requirements Traceability Matrix (RTM)",
+  "Business Rules Analysis & Gap Analysis",
+  "System Design Documentation"
+],
+  "tools": [
+    "Draw.io / diagrams.net",
+    "Visual Paradigm",
+    "Figma (Wireflows & UI Logic)",
+    "DBeaver"
+  ],
+  "stats": [
+    {
+      "label": "",
+      "value": "System Diagrams Authored",
+      "icon": "bi-diagram-3-fill"
+    },
+    {
+      "label": "",
+      "value": "Process Workflows Modeled",
+      "icon": "bi-bezier2"
+    },
+    {
+      "label": "",
+      "value": "ERD Entities Normalized",
+      "icon": "bi-database-fill-gear"
+    },
+    {
+      "label": "",
+      "value": "Requirements Coverage Rate",
+      "icon": "bi-shield-check"
+    }
+  ],
+  "diagrams": [
+    {
+      "id": "DSS-BLT-DD",
+      "title": "Decision Support System for Determining the Eligibility of Village Fund Direct Cash Assistance (BLT-DD) Recipients",
+      "category": "BPMN 2.0",
+      "project": "Decision Support System for BLT-DD Eligibility",
+     "type": "Process Workflow / Swimlanes",
+  "description": "Comprehensive business process modeling for BLT-DD social assistance distribution using Naive Bayes classification based on 8 socioeconomic criteria, automated posterior probability calculation, and village deliberation validation.",
+  "key_elements": [
+    "Warga Data Submission & Criterion Categorization",
+    "Operator Document Verification & System Input",
+    "Naive Bayes Prior & Conditional Probability Calculation",
+    "Exclusive Gateway (XOR) for Eligibility Ranking"
+  ],
+      "tools": ["Draw.io", "Visual Paradigm", "BPMN 2.0 Standard"],
+      "nda_sanitized": true,
+      "mermaid_code": "graph TD; W1([Mulai]) --> W2[Serahkan Data]; W2 --> O1[Validasi Berkas]; O1 --> O2[Input 8 Kriteria]; O2 --> D1[Dataset]; D1 --> D2[Hitung Prior]; D2 --> D3[Hitung Bersyarat]; D3 --> D4[Posterior]; D4 --> D5{Evaluasi}; D5 -- Layak --> D6[Layak]; D5 -- Tidak Layak --> D7[Tidak Layak]; D6 --> K1[Laporan Kades]; D7 --> K1; K1 --> K2{Musdes}; K2 -- Setuju --> K3[SK Kades]; K2 -- Koreksi --> O2; K3 --> E1([Selesai]);"
+    },
+    {
+      "id": "DSS-BLT-DD_ERD",
+      "title": "Relational Database Schema (ERD 3NF): DSS for Determining the Eligibility of Village Fund Direct Cash Assistance (BLT-DD) Recipients",
+      "category": "ERD (Database)",
+      "project": "Decision Support System for BLT-DD Eligibility",
+      "type": "Entity Relationship Diagram",
+      "description": "Fully normalized third normal form (3NF) database schema detailing relational integrity between Users, Assets, Loan Transactions, Maintenance Records, and AI Complaint Clusters.",
+      "key_elements": [
+    "User Management & System Administration Entity",
+    "Criteria & Criteria Values Master Data Entities",
+    "Family & Detailed Family Members Profile Entities",
+    "Regional / Wilayah Hierarchical Entity",
+    "Job / Pekerjaan Reference Entity",
+    "Dataset Feature Mapping Entity for Naive Bayes",
+    "Prediction Results & Posterior Probability Output Entity",
+    "Recipient Approval Tracking & Village Report Entities"
+      ],
+      "tools": ["Draw.io"],
+      "nda_sanitized": true,
+      "mermaid_code": "erDiagram User ||--o{ kriteria : mengelola kriteria ||--o{ nilai_kriteria : memiliki User ||--o{ Keluarga : mengelola Keluarga ||--o{ detail_anggota : memiliki detail_anggota }o--|| wilayah : alamat wilayah ||--o{ wilayah : memiliki_induk pekerjaan ||--o{ detail_anggota : memiliki pekerjaan ||--o{ Dataset : memiliki Dataset ||--|| Hasil_prediksi : menghasilkan Hasil_prediksi ||--o{ Persetujuan_Penerima : tindakan Persetujuan_Penerima }o--o{ laporan : detail_laporan User { string id_user PK } kriteria { string id_kriteria PK } nilai_kriteria { string id_nilai PK } Keluarga { string id_kk PK } wilayah { string id_wilayah PK } detail_anggota { string id_anggota PK } pekerjaan { string id_pekerjaan PK } Dataset { string id_dataset PK } Hasil_prediksi { string id_hasil PK } Persetujuan_Penerima { string id_persetujuan PK } laporan { string id_laporan PK }"
+    },
+    {
+      "id": "DSS-BLT-DD-Sequence",
+      "title": "UML Sequence: DSS for Determining the Eligibility of Village Fund Direct Cash Assistance (BLT-DD) Recipients",
+      "category": "UML Sequence",
+      "project": "Decision Support System for BLT-DD Eligibility",
+      "type": "Sequence Diagram",
+      "description": "Interaction diagram illustrating the flow between the client web interface, Gin HTTP controller, Clean Architecture usecase, asynchronous clustering service, and the Google Gemini AI API.",
+      "key_elements": [
+        "Administrator Interface & Result View Navigation",
+    "Classification Controller & Family Data Retrieval",
+    "Model Layer & Database Dataset Extraction (Training & Testing)",
+    "Naive Bayes Mathematical Computation (Prior, Likelihood, Posterior)",
+    "Prediction Persistence, Data Filtering, and Result Display Operations"
+      ],
+      "tools": ["Draw.io", "UML 2.5", "Mermaid.js"],
+      "nda_sanitized": true,
+      "mermaid_code": "sequenceDiagram; actor Administrator; participant view as view_hasilKlasifikasi; participant ctrl as klasifikasiController; participant dm as DatasetModel; participant hpm as HasilPrediskitModel; participant km as KeluargaModel; participant akm as AnggotaKeluargaModel; participant db as Database; Administrator->>view: klik halaman Hasil Klaasifikasi; view->>ctrl: tampilHasilKlasifikasi(); ctrl->>akm: getDataAnggotaKeluargaByID(); akm->>db: select anggota keluarga by id; db-->>akm: data kepala keluarga; akm-->>ctrl: data kepala keluarga; ctrl->>km: getDataKeluargaByID(); km->>db: select keluarga by id; db-->>km: data nomor KK; km-->>ctrl: data nomor KK; ctrl->>hpm: getHasilKlasifikasi(); hpm->>db: select hasil Prediksi; db-->>hpm: data klasifikasi; hpm-->>ctrl: data klasifikasi; ctrl-->>view: data klasifikasi, Nomor KK, Kepala Keluarga; view-->>Administrator: halaman Hasil Klasifikasi; Administrator->>ctrl: klik proses klasifikasi; ctrl->>ctrl: prosesKlasifikasiKelayakan(); ctrl->>dm: getDataTraining(); dm->>db: select dataset by jenis=training; db-->>dm: Data Training; dm-->>ctrl: Data Training; ctrl->>dm: getDataCalonKlasifikasi(); dm->>db: select Dataset by jenis=Testing; db-->>dm: Data Testing; dm-->>ctrl: Data Testing; ctrl->>ctrl: HitungPrior() HitungLikelihood() HitungPosterior(); ctrl->>hpm: ProsesHasilPrediksi(); hpm->>db: insert to tabel hasil_prediksi; db-->>hpm: Status Insert Proses Klasifikasi; hpm-->>ctrl: Status Insert Proses Klasifikasi; ctrl-->>view: Status Insert Proses Klasifikasi; view-->>Administrator: Alert Status Proses Klasifikasi; Administrator->>ctrl: klik Reset proses klasifikasi; ctrl->>ctrl: resetKlasifikasiKelayakan(); ctrl->>hpm: DeleteHasilPrediksi(); hpm->>db: delete from hasil_prediksi; db-->>hpm: Status Reset Hasil Klasifikasi; hpm-->>ctrl: Status Reset Hasil Klasifikasi; ctrl-->>view: return Status Reset Hasil Klasifikasi; view-->>Administrator: Alert Status Proses Klasifikasi; Administrator->>view: Filter Hasil Prediksi, Klik Cari; view->>ctrl: getHasilPrediksiByLabel(); ctrl->>hpm: selectHasilPrediksiByLabel(); hpm->>db: Select hasil Prediksi By label; db-->>hpm: data hasil prediksi; hpm-->>ctrl: data hasil prediksi; ctrl-->>view: Return data hasil prediksi; view-->>Administrator: Tampil Tabel Hasil Prediksi by Filter; Administrator->>view: Klik Export Excel; view->>ctrl: exportHasilPrediksi(); ctrl->>hpm: selectHasilPrediksi(); hpm->>db: Select hasil Prediksi; db-->>hpm: data hasil prediksi; hpm-->>ctrl: data hasil prediksi; ctrl-->>view: Return data hasil prediksi; view-->>Administrator: Hasil Prediksi Terdownload;"
+    },
+    {
+      "id": "DSS-BLT-DD-UseCase",
+      "title": "UML Use Case Diagram: DSS for Determining the Eligibility of Village Fund Direct Cash Assistance (BLT-DD) Recipients",
+      "category": "UML Use Case",
+      "project": "Decision Support System for BLT-DD Eligibility",
+      "type": "Use Case Diagram",
+      "description": "Functional scope and boundary specification for the Decision Support System (DSS) for determining the eligibility of Village Fund Direct Cash Assistance (BLT-DD) recipients, mapping user interactions for Administrators, and System Users.",
+      "key_elements": [
+        "Multi-Criteria Eligibility Assessment (Vehicle Ownership, Housing Conditions, Income, Dependents, and Employment)",
+    "Beneficiary & Family Data Management (Household Records, Family Members, and Regional Information)",
+    "Naive Bayes Classification Model (Prior Probability, Likelihood, and Posterior Probability Calculation)",
+    "Training Dataset & Classification Data Management (Labeled Data, Testing Data, and Model Evaluation)",
+    "Automated Beneficiary Eligibility Prediction (Eligible and Not Eligible Classification)",
+    "Beneficiary Approval Workflow (Administrator and Village Head Authorization)",
+    "Classification Results, Reporting & Audit Trail (Eligibility Recapitulation and Decision History)"
+      ],
+      "tools": ["Draw.io", "Visual Paradigm", "UML Standard"],
+      "nda_sanitized": true,
+      "mermaid_code": "flowchart LR; subgraph Actors; Admin[\"⚙️ Administrator\"]; Kades[\"👔 Kepala Desa\"]; Publik[\"🌐 Publik\"]; end; subgraph SystemBoundary[\"DSS BLT-DD Naive Bayes System\"]; UC1[\"Mengola Data Pengguna\"]; UC2[\"Mengola Data Kriteria\"]; UC3[\"Mengola Nillai Kriteria\"]; UC4[\"Mengola Data Penerima\"]; UC5[\"Mengola Data Training\"]; UC6[\"Mengola Data Klasifikasi\"]; UC7[\"Melihat Hasil Klasifikasi\"]; UC8[\"Persetujuan Penerima BLPTD\"]; UC9[\"Melihat Data Penerima BLTD\"]; UC10[\"Cetak Laporan\"]; UC11[\"Login\"]; UC12[\"Cek Status Penerimaan BLT-DD\"]; end; Admin --> UC1; Admin --> UC2; Admin --> UC3; Admin --> UC4; Admin --> UC5; Admin --> UC6; Admin --> UC7; Kades --> UC7; Kades --> UC8; Kades --> UC9; Publik --> UC12; UC1 -.-> UC11; UC2 -.-> UC11; UC3 -.-> UC11; UC4 -.-> UC11; UC5 -.-> UC11; UC6 -.-> UC11; UC7 -.-> UC11; UC8 -.-> UC11; UC9 -.-> UC11; UC6 -.-> UC7; UC5 -.-> UC6; UC9 -.-> UC10; UC12 -.-> UC8;"
+    }
+  ]
+}

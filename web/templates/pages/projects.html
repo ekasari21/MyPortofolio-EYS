@@ -1,0 +1,114 @@
+
+{{ define "content" }}
+<div class="container py-5">
+
+    <!-- Page Header -->
+    <div class="mb-4">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2 text-uppercase fw-semibold mb-3">
+            Portfolio Case Studies
+        </span>
+
+        <h1 class="display-5 fw-bold text-body mb-2">
+            Featured Projects
+        </h1>
+
+        <p class="text-body-secondary mb-0" style="max-width: 650px;">
+            Explore my work across system analysis, full-stack development,
+            machine learning, and project management.
+        </p>
+    </div>
+
+    <hr class="border-secondary-subtle opacity-25 my-4">
+
+    <!-- Filter & Search -->
+    <div class="mb-4">
+
+        <div class="d-flex flex-column flex-lg-row
+                    justify-content-between align-items-lg-center gap-3">
+
+            <!-- Category Filters -->
+            <div class="d-flex flex-wrap gap-2"
+                 id="projectFilterGroup">
+
+                <button
+                    class="btn btn-sm btn-primary rounded-pill px-3 filter-btn active"
+                    data-filter="all">
+                    All Projects
+                </button>
+
+                {{ range .Categories }}
+                <button
+                    class="btn btn-sm btn-outline-secondary rounded-pill px-3 filter-btn"
+                    data-filter="{{ . }}">
+                    {{ . }}
+                </button>
+                {{ end }}
+
+            </div>
+
+            <!-- Search -->
+            <div class="project-search flex-shrink-0">
+                <div class="input-group">
+                    <span class="input-group-text bg-body border-end-0">
+                        <i class="bi bi-search text-body-secondary"></i>
+                    </span>
+
+                    <input
+                        type="search"
+                        class="form-control bg-body border-start-0 ps-0"
+                        id="projectSearchInput"
+                        placeholder="Search projects or technologies..."
+                        aria-label="Search projects">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="row g-4 align-items-stretch" id="projectsGrid">
+
+        {{ range .Projects }}
+        <div
+            class="col-12 col-md-6 col-xl-4 project-item d-flex"
+            data-category="{{ .Category }}"
+            data-name="{{ .Name }}"
+            data-tech="{{ range .Technologies }}{{ . }} {{ end }}">
+
+            {{ template "project_card.html" . }}
+
+        </div>
+        {{ end }}
+
+    </div>
+
+    <!-- Empty State -->
+    <div id="noProjectsMessage"
+         class="text-center py-5 d-none">
+
+        <div class="card border-0 shadow-sm rounded-4
+                    p-5 mx-auto bg-body"
+             style="max-width: 420px;">
+
+            <i class="bi bi-folder-x fs-1 text-body-tertiary mb-3"></i>
+
+            <h5 class="fw-bold text-body">
+                No Projects Found
+            </h5>
+
+            <p class="text-body-secondary small">
+                No projects match your search or selected category.
+            </p>
+
+            <button
+                class="btn btn-primary btn-sm rounded-pill px-4 mx-auto"
+                onclick="resetProjectFilters()">
+                <i class="bi bi-arrow-counterclockwise me-1"></i>
+                Reset Filters
+            </button>
+
+        </div>
+    </div>
+
+</div>
+{{ end }}

@@ -1,0 +1,79 @@
+{{ define "navbar.html" }}
+<nav class="navbar navbar-expand-lg sticky-top bg-body border-bottom shadow-sm py-3">
+    <div class="container">
+        <!-- Brand / Logo -->
+        <a class="navbar-brand d-flex items-center gap-2 text-decoration-none" href="/">
+            <div class="brand-badge text-white rounded-3 d-flex align-items-center justify-content-center fw-bold">
+                EY
+            </div>
+            <div>
+                <span class="fw-bold d-block text-body lh-1 fs-5">
+                    {{ if .Profile }}{{ .Profile.Name }}{{ else }}Eka Yulia Sari{{ end }}
+                </span>
+                <small class="text-body-secondary text-uppercase fw-semibold" style="font-size: 0.7rem; letter-spacing: 0.5px;">
+                    Portfolio & Showcase
+                </small>
+            </div>
+        </a>
+
+        <!-- Mobile Toggler Button -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Nav Items -->
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-2 rounded-2 {{ if eq .ActivePage "home" }}active fw-bold text-primary{{ end }}" href="/">
+                        <i class="bi bi-house me-1"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-2 rounded-2 {{ if eq .ActivePage "about" }}active fw-bold text-primary{{ end }}" href="/about">
+                        <i class="bi bi-person me-1"></i> About
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-2 rounded-2 {{ if eq .ActivePage "experience" }}active fw-bold text-primary{{ end }}" href="/experience">
+                        <i class="bi bi-briefcase me-1"></i> Experience
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-2 rounded-2 {{ if eq .ActivePage "projects" }}active fw-bold text-primary{{ end }}" href="/projects">
+                        <i class="bi bi-grid me-1"></i> Projects
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-2 rounded-2 {{ if eq .ActivePage "modeling" }}active fw-bold text-primary{{ end }}" href="/modeling">
+                        <i class="bi bi-diagram-3 me-1"></i> System Modeling
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link px-3 py-2 rounded-2 {{ if eq .ActivePage "contact" }}active fw-bold text-primary{{ end }}" href="/contact">
+                        <i class="bi bi-envelope me-1"></i> Contact
+                    </a>
+                </li>
+
+                <!-- Dark Mode Toggle Button -->
+                <li class="nav-item ms-lg-2">
+                    <button class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 d-flex align-items-center gap-1" id="themeToggleBtn" type="button" aria-label="Toggle theme">
+                        <i class="bi bi-moon-stars" id="themeIcon"></i>
+                        <span class="d-none d-lg-inline text-capitalize" id="themeText">Theme</span>
+                    </button>
+                </li>
+
+                <!-- Download CV Action Button -->
+                {{ if and .Profile .Profile.ResumeURL }}
+                <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                    <a href="{{ .Profile.ResumeURL }}" class="btn btn-sm btn-primary rounded-pill px-3 py-2 fw-semibold d-flex align-items-center justify-content-center gap-1 shadow-sm" download>
+                        <i class="bi bi-download"></i>
+                        <span>Resume</span>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</nav>
+{{ end }}
